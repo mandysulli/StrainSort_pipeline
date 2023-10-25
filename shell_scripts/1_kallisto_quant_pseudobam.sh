@@ -11,6 +11,8 @@
 #SBATCH --mail-user=$$$$$$@email.edu
 #SBATCH --mail-type=BEGIN,END,FAIL
 
+##kallisto will make output folders for each sample containing these files: abundance.h5, abundance.tsv, run_info.json and pseudoalignments.bam
+
 module load kallisto/0.48.0-gompi-2022a
 
 #Set directory
