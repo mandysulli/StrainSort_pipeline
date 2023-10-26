@@ -1,14 +1,14 @@
 #!/bin/bash
-#SBATCH --job-name=spades_genome_specific
-#SBATCH --partition=iob_p
+#SBATCH --job-name=spades_strain_specific
+#SBATCH --partition=partition
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
-#SBATCH --mem=20gb
-#SBATCH --export=NONE
-#SBATCH --time=24:00:00
+#SBATCH --mem=##
+#SBATCH --export=
+#SBATCH --time=##:##:##
 #SBATCH --output=%x_%j.out
 #SBATCH --error=%x_%j.err
-#SBATCH --mail-user=mandyh@uga.edu
+#SBATCH --mail-user=$$$$$$@email.edu
 #SBATCH --mail-type=BEGIN,END,FAIL
 
 module load SPAdes/3.15.5-GCC-11.3.0 
@@ -26,5 +26,5 @@ input='/file/path/to/variant_specific_reads_fastq'
 ### Spades will output a folder with assembly files within it
 for x in {strain1,strain2,strain3,unmapped}
 do
-python /file/path/to/spades.py --meta --threads 8 --memory 20 --only-assembler -o ./Sample -1 $input/Sample_$x\_R1.fastq -2 $input/Sample_$x\_R2.fastq
+python /file/path/to/spades.py --meta --threads 8 --memory ## --only-assembler -o ./Sample -1 $input/Sample_$x\_R1.fastq -2 $input/Sample_$x\_R2.fastq
 done
