@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=Kallisto_quant_psuedobam
+#SBATCH --job-name=Kallisto_psuedobam_read_separation
 #SBATCH --partition=partition
 #SBATCH --ntasks=#
 #SBATCH --cpus-per-task=#
