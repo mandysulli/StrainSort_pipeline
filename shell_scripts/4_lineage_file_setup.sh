@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=Kallisto_quant_psuedobam
+#SBATCH --job-name=strain_file_setup
 #SBATCH --partition=partition
 #SBATCH --ntasks=1
 #SBATCH --mem=#
