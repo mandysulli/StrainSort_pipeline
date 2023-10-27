@@ -7,11 +7,12 @@ WORKFLOW:
 <img width="468" alt="image" src="https://github.com/mandysulli/StrainSort_pipeline/assets/89869003/5e27777f-91fc-4582-ac08-99d0bc05f3a9">
 
 
-
+Notes:
 scripts can be downloaded from "shell_scripts"
 Compiled Java program can be downloaded from "java_programs_compiled" - Programs compled with Java/13.0.2
 Java programs that have not been compiled can be downloaded from "java_programs_not_compiled" - can be compled with any version of java using:
 javac $program_name$.java
+
 
 Inputs Needed:
 1. Paired end FASTQ-Formatted sequencing reads (of any length) obtained from a sample(s) of interest
@@ -20,4 +21,6 @@ Inputs Needed:
 4. A single reference genome from the species of interest 
 
 
-Step 1:
+Step 1: Strain abundance estimation and read assignment:
+
+kallisto quant -t 6 -b 100 --pseudobam -i $index/sequences.kallisto_idx -o $output/Sample $input/Sample_pair_trim_R1.fastq.gz $input/Sample_pair_trim_R2.fastq.gz
