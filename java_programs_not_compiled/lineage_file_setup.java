@@ -90,7 +90,7 @@ public class lineage_file_setup {
         
 	}
 	
-//////Write the output to a files... Prints in a column.. 
+//////Write the output to a files... 
 	public static void writeToFile(String name, ArrayList<String> strains_hold) throws IOException{
 		
 		
@@ -106,6 +106,7 @@ public class lineage_file_setup {
 	    	}
 	 } 
 
+	////Write the strain names to a file 
 	public static void writeFinalToFile(ArrayList<String> strains_names) throws IOException{
 		
 		
