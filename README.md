@@ -11,7 +11,7 @@ Notes:
 scripts can be downloaded from "shell_scripts"
 Compiled Java program can be downloaded from "java_programs_compiled" - Programs compled with Java/13.0.2
 Java programs that have not been compiled can be downloaded from "java_programs_not_compiled" - can be compled with any version of java using:
-javac $program_name$.java
+javac $program-name$.java
 
 
 Inputs Needed:
