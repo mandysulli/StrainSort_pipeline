@@ -23,4 +23,13 @@ Inputs Needed:
 
 Step 1: Strain abundance estimation and read assignment:
 
+Run with kallisto
+
+Inputs needed here:
+
+
 > kallisto quant -t 6 -b 100 --pseudobam -i $index/sequences.kallisto_idx -o $output/Sample $input/Sample_pair_trim_R1.fastq.gz $input/Sample_pair_trim_R2.fastq.gz
+
+Outputs:
+a tsv file with the estimated counts of reads per reference sequence
+a pseudobam file that indicates which reference sequence each reads pseudoaligned with
