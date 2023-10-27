@@ -1,13 +1,13 @@
 #!/bin/bash
 #SBATCH --job-name=Combine_filter
-#SBATCH --partition=iob_p
+#SBATCH --partition=partition
 #SBATCH --ntasks=1
-#SBATCH --mem=25gb
-#SBATCH --export=NONE
-#SBATCH --time=4:00:00
+#SBATCH --mem=#
+#SBATCH --export=
+#SBATCH --time=##:##:##
 #SBATCH --output=%x_%j.out
 #SBATCH --error=%x_%j.err
-#SBATCH --mail-user=mandyh@uga.edu
+#SBATCH --mail-user=$$$$$$@email.edu
 #SBATCH --mail-type=BEGIN,END,FAIL
 
 module load Java/13.0.2
