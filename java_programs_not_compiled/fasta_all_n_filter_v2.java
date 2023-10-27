@@ -81,7 +81,7 @@ public class fasta_all_n_filter_v2 {
 		String cutName = fileName.substring(0, fileName.length()-21);
 		
 	    try {
-	    FileWriter myWriter = new FileWriter(cutName+"_final_sp.fasta");
+	    FileWriter myWriter = new FileWriter(cutName+"_final.fasta");
 	        for(String i: finalList) {
 	        myWriter.write(i + System.lineSeparator());
 	        }
