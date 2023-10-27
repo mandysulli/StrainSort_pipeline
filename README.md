@@ -26,7 +26,8 @@ Step 1: Strain abundance estimation and read assignment:
 Run with kallisto
 
 Inputs needed here:
-
+Paired end reads - they can be any read length
+An index reference database - run script 0_kallisto_idx.sh with your reference sequences concatinated into one file
 
 > kallisto quant -t 6 -b 100 --pseudobam -i $index/sequences.kallisto_idx -o $output/Sample $input/Sample_pair_trim_R1.fastq.gz $input/Sample_pair_trim_R2.fastq.gz
 
