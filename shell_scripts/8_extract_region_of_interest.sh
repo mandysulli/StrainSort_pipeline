@@ -1,5 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=Extract_region_of_interest
+#SBATCH --partition=partition
 #SBATCH --ntasks=1
 #SBATCH --mem=#
 #SBATCH --export=
