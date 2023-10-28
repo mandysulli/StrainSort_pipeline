@@ -20,11 +20,11 @@ cd /file/path/to/spades_outputs
 ref='/file/path/to/ref_genomes'
 output='/file/path/to/spades_alignment_ref'
 
-### Get the strain used for x from the "All_strain_names.txt" file created in previous set
+### Get the strain used for x from the "All_strain_names.txt" file created by lineage_file_stepup.class
 ### add unmapped to end
+## ref genome indexed
+## bbmap maps scaffolds to genome
 for x in {strain1,strain2,strain3,unmapped}
 do
-## ref genome indexed
-##Bbmap maps scaffolds to genome
 bbmap.sh in=./Sample_$x\/scaffolds.fasta out=$output/Sample_$x\.sam ref=$ref/reference_genome.fasta
 done
