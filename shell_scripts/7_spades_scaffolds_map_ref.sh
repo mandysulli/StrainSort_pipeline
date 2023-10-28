@@ -13,7 +13,6 @@
 
 module load BBMap/39.01-GCC-11.3.0
 module load Java/11.0.16
-module load SAMtools/1.14-GCC-11.2.0
 
 cd /file/path/to/spades_outputs
 
