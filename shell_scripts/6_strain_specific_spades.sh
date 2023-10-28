@@ -19,7 +19,7 @@ cd /file/path/to/spades_outputs
 
 input='/file/path/to/variant_specific_reads_fastq'
 
-### Get the strain used for x from the "All_strain_names.txt" file created in previous set
+### Get the strain used for x from the "All_strain_names.txt" file created by lineage_file_stepup.class
 ### add unmapped to end
 ### here the flag meta is being used. You can use corona for SARS-CoV-2 data
 ### make sure threads and memory match the resources given
