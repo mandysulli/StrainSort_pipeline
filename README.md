@@ -26,11 +26,12 @@ Inputs Needed:
 
 Run with kallisto
 
-Inputs needed here:
+Inputs required:
 Paired end reads - they can be any read length
 An index reference database - run script 0_kallisto_idx.sh with your reference sequences concatinated into one file
 
 ```
+cd /file/path/to/Kallisto_outputs
 kallisto quant -t 6 -b 100 --pseudobam -i $index/sequences.kallisto_idx -o $output/Sample $input/Sample_pair_trim_R1.fastq.gz $input/Sample_pair_trim_R2.fastq.gz
 ```
 
@@ -41,14 +42,13 @@ a pseudobam file that indicates which reference sequence each reads pseudoaligne
 **Will need to rename and move outputs**
 rename
 ```
+cd /file/path/to/Kallisto_outputs
 mv ./Sample\/abundance.tsv ./Sample\/Sample\_abundance.tsv
 mv ./Sample\/pseudoalignments.bam ./Sample\/Sample\_pseudoalignments.bam
 ```
 move
 ```
-#Set directory
 cd /file/path/to/Kallisto_outputs
-
 mkdir Kallisto_tsv_files
 mkdir Kallisto_pseudobam_files
 
@@ -61,7 +61,7 @@ Vizualization can be made from tsv file using the Rmarkdown file:
 
 ## Step 2: Sepparation of reads based on strain mapping:
 
-Inputs needed:
+Inputs required:
 strain_key.txt - This will need to be a tab delimited text file. This first column will need to have the headers from the reference seqeunces that you used in your reference database and the second colomn will need to have the strain associated with the header. There can be other meta data in the file, however these need to be the first two coloumns. 
 
 **Before separation, you will need to set up the strain files**
@@ -130,3 +130,11 @@ mkdir /file/path/to/spades_outputs
 cd /file/path/to/spades_outputs
 python /file/path/to/spades.py --meta --threads 8 --memory 5 --only-assembler -o ./Sample -1 $input/Sample_$x\_R1.fastq -2 $input/Sample_$x\_R2.fastq
 ```
+
+## Step 4: Extract region of interest from the assembled scaffolds
+
+Inputs required:
+
+**Before extracting the scaffolds from the SPAdes assembly will need to be mapped to a reference genome**
+
+
