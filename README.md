@@ -2,16 +2,17 @@
  The StrainSort pipeline was created for use with complex mutl-strain samples. StrainSort can identify the strains within you sample, estimate the abundance of each strain within the sample and perform phylogenetic analysis of the strains present. 
 
 
-##WORKFLOW:
+## WORKFLOW:
 
 <img width="468" alt="image" src="https://github.com/mandysulli/StrainSort_pipeline/assets/89869003/5e27777f-91fc-4582-ac08-99d0bc05f3a9">
 
 
 Notes:
+
 scripts can be downloaded from "shell_scripts"
 Compiled Java program can be downloaded from "java_programs_compiled" - Programs compled with Java/13.0.2
 Java programs that have not been compiled can be downloaded from "java_programs_not_compiled" - can be compled with any version of java using:
-javac $program_name$.java
+javac program_name.java
 
 
 Inputs Needed:
@@ -21,7 +22,7 @@ Inputs Needed:
 4. A single reference genome from the species of interest 
 
 
-Step 1: Strain abundance estimation and read assignment:
+## Step 1: Strain abundance estimation and read assignment:
 
 Run with kallisto
 
@@ -29,7 +30,9 @@ Inputs needed here:
 Paired end reads - they can be any read length
 An index reference database - run script 0_kallisto_idx.sh with your reference sequences concatinated into one file
 
-> kallisto quant -t 6 -b 100 --pseudobam -i $index/sequences.kallisto_idx -o $output/Sample $input/Sample_pair_trim_R1.fastq.gz $input/Sample_pair_trim_R2.fastq.gz
+```
+kallisto quant -t 6 -b 100 --pseudobam -i $index/sequences.kallisto_idx -o $output/Sample $input/Sample_pair_trim_R1.fastq.gz $input/Sample_pair_trim_R2.fastq.gz
+```
 
 Outputs:
 a tsv file with the estimated counts of reads per reference sequence
