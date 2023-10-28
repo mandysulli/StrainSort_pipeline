@@ -37,3 +37,28 @@ kallisto quant -t 6 -b 100 --pseudobam -i $index/sequences.kallisto_idx -o $outp
 Outputs:
 a tsv file with the estimated counts of reads per reference sequence
 a pseudobam file that indicates which reference sequence each reads pseudoaligned with
+
+**Will need to rename and move outputs**
+```
+mv ./Sample\/abundance.tsv ./Sample\/Sample\_abundance.tsv
+mv ./Sample\/pseudoalignments.bam ./Sample\/Sample\_pseudoalignments.bam
+```
+
+```
+#Set directory
+cd /file/path/to/Kallisto_outputs
+
+mkdir Kallisto_tsv_files
+mkdir Kallisto_pseudobam_files
+
+echo "$i"
+mv ./Sample\/Sample_abundance.tsv ./Kallisto_tsv_files
+mv ./Sample\/Sample_pseudoalignments.bam ./Kallisto_pseudobam_files
+```
+
+Vizualization can be made from tsv file using the Rmarkdown file:
+
+## Step 2: Sepparation of reads based on strain mapping:
+
+Run with SAMtools
+
