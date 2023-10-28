@@ -39,11 +39,12 @@ a tsv file with the estimated counts of reads per reference sequence
 a pseudobam file that indicates which reference sequence each reads pseudoaligned with
 
 **Will need to rename and move outputs**
+rename
 ```
 mv ./Sample\/abundance.tsv ./Sample\/Sample\_abundance.tsv
 mv ./Sample\/pseudoalignments.bam ./Sample\/Sample\_pseudoalignments.bam
 ```
-
+move
 ```
 #Set directory
 cd /file/path/to/Kallisto_outputs
@@ -62,3 +63,7 @@ Vizualization can be made from tsv file using the Rmarkdown file:
 
 Run with SAMtools
 
+Inputs needed:
+strain_key.txt - This will need to be a tab delimited text file.
+
+**Before separation, the s
