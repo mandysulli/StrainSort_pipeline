@@ -34,8 +34,9 @@ samtools index $input/Sample_pseudoalignments_sorted.bam
 samtools view -h $input/Sample_pseudoalignments_sorted.bam > $input/Sample_pseudoalignments.sam
 grep "@" $input/Sample_pseudoalignments.sam > $output/sam_headers_Sample.txt
 
-### only grab mapped reads where both R1 and R2 map
+### only grab mapped reads where both R1 and R2 map - need paired for spades to work
 cat $input/Sample_pseudoalignments.sam | grep -v "^@" | awk 'BEGIN{FS="\t";OFS="\t"}{if($2=='83'||$2=='99'||$2=='147'||$2=='163') print $0}' > $output/incomplete_Sample_mapped_reads.sam
+### grab unmapped reads
 cat $input/Sample_pseudoalignments.sam | grep -v "^@" | awk 'BEGIN{FS="\t";OFS="\t"}{if($2=='77'||$2=='141') print $0}' > $output/incomplete_Sample_unmapped_reads.sam
 cat $output/sam_headers_Sample.txt $output/incomplete_Sample_unmapped_reads.sam > $output/Sample_unmapped_reads.sam
 samtools view -S -b $output/Sample_unmapped_reads.sam > $output/Sample_unmapped_reads.bam
