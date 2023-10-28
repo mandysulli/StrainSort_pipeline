@@ -20,6 +20,5 @@ inputs='/file/path/to/extracted_spike_fastas'
 
 cd /file/path/to/mafft_inputs
 
-
 cat $inputs/Sample_*.fasta > Sample_spike_proteins.fasta 
 java fasta_all_n_filter_v2 Sample_spike_proteins.fasta 
