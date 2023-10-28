@@ -26,5 +26,5 @@ input='/file/path/to/variant_specific_reads_fastq'
 ### Spades will output a folder with assembly files within it
 for x in {strain1,strain2,strain3,unmapped}
 do
-python /file/path/to/spades.py --meta --threads 8 --memory ## --only-assembler -o ./Sample -1 $input/Sample_$x\_R1.fastq -2 $input/Sample_$x\_R2.fastq
+python /file/path/to/spades.py --meta --threads 8 --memory 5 --only-assembler -o ./Sample -1 $input/Sample_$x\_R1.fastq -2 $input/Sample_$x\_R2.fastq
 done
