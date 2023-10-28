@@ -114,3 +114,5 @@ echo "$x"
 samtools fastq $output/Sample_$x\_reads.bam -1 $output2/Sample_$x\_R1.fastq -2 $output2/Sample_$x\_R2.fastq
 done
 ```
+
+## Step 3: _de novo_ asseembly of reads by strain
