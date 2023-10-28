@@ -66,7 +66,9 @@ Inputs required here:
 
 **Before separation, you will need to set up the strain files**
 
-Will need to make lineage folder with your strain_key.txt and lineage_file_setup.class file inside of it
+Things to note at this step:
+1. Will need to make lineage folder with your strain_key.txt and lineage_file_setup.class file inside of it
+2. If using compiled java program, you will need Java/13.0.2
 
 ```
 cd /scratch/mandyh/WISER_MC_Kallisto_Paper/lineage_files
@@ -138,4 +140,28 @@ Inputs required here:
 
 **Before extracting the scaffolds from the SPAdes assembly will need to be mapped to a reference genome**
 
+Run with bbmap
 
+```
+ref='/file/path/to/ref_genomes'
+output='/file/path/to/spades_alignment_ref'
+
+for x in {strain1,strain2,strain3,unmapped}
+do
+bbmap.sh in=./Sample_$x\/scaffolds.fasta out=$output/Sample_$x\.sam ref=$ref/reference_genome.fasta
+done
+```
+
+Run with Java (If using compiled java program, you will need Java/13.0.2)
+
+```
+cd /file/path/to/spades_alignment_ref
+mkdir /file/path/to/extracted_spike_fastas
+output='/file/path/to/extracted_spike_fastas'
+
+for x in {strain1,strain2,strain3,unmapped}
+do
+java scaffold_joining Sample_$x\.sam 21563 25384 29903
+mv ./Extracted_Sample_$x\.fasta $output
+done
+```
