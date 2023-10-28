@@ -104,7 +104,7 @@ samtools view -S -b $output/Sample_unmapped_reads.sam > $output/Sample_unmapped_
 samtools fastq $output/Sample_unmapped_reads.bam -1 $output2/Sample_unmapped_R1.fastq -2 $output2/Sample_unmapped_R2.fastq
 
 ### Pulling out lineage from mapped reads by sample
-### Get the strain used for x from the "All_strain_names.txt" file created in previous set
+### Get the strains used for x from the "All_strain_names.txt" file created by lineage_file_stepup.class
 for x in {strain1,strain2,strain3}
 do
 grep -f $lineage/$x\.txt $output/incomplete_Sample_mapped_reads.sam > $output/incomplete_Sample_$x\_reads.sam
@@ -116,3 +116,17 @@ done
 ```
 
 ## Step 3: _de novo_ asseembly of reads by strain
+
+Run with SPAdes
+
+Things to not at this step:
+1. Get the strains used for x from the "All_strain_names.txt" file created by lineage_file_stepup.class and add unmapped to end
+2. Here the flag meta is being used. You can use corona for SARS-CoV-2 data
+3. Make sure threads and memory match the resources given
+4. Spades will output a folder with assembly files within it
+
+```
+mkdir /file/path/to/spades_outputs
+cd /file/path/to/spades_outputs
+python /file/path/to/spades.py --meta --threads 8 --memory 5 --only-assembler -o ./Sample -1 $input/Sample_$x\_R1.fastq -2 $input/Sample_$x\_R2.fastq
+```
