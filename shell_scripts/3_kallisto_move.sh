@@ -21,4 +21,4 @@ mkdir Kallisto_pseudobam_files
 
 echo "$i"
 mv ./Sample\/Sample_abundance.tsv ./Kallisto_tsv_files
-mv ./Sample\/Sample\_pseudoalignments.bam ./Kallisto_pseudobam_files
+mv ./Sample\/Sample_pseudoalignments.bam ./Kallisto_pseudobam_files
