@@ -16,7 +16,5 @@
 cd /file/path/to/Kallisto_outputs
 
 echo "$i"
-mv ./Sample\/abundance.h5 ./Sample\/Sample\_abundance.h5
 mv ./Sample\/abundance.tsv ./Sample\/Sample\_abundance.tsv
-mv ./Sample\/run_info.json ./Sample\/Sample\_run_info.json
 mv ./Sample\/pseudoalignments.bam ./Sample\/Sample\_pseudoalignments.bam
