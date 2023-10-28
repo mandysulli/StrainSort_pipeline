@@ -22,7 +22,6 @@ output='/file/path/to/spades_alignment_ref'
 
 ### Get the strain used for x from the "All_strain_names.txt" file created by lineage_file_stepup.class
 ### add unmapped to end
-## ref genome indexed
 ## bbmap maps scaffolds to genome
 for x in {strain1,strain2,strain3,unmapped}
 do
