@@ -64,6 +64,13 @@ Vizualization can be made from tsv file using the Rmarkdown file:
 Run with SAMtools
 
 Inputs needed:
-strain_key.txt - This will need to be a tab delimited text file.
+strain_key.txt - This will need to be a tab delimited text file. This first column will need to have the headers from the reference seqeunces that you used in your reference database and the second colomn will need to have the strain associated with the header. There can be other meta data in the file, however these need to be the first two coloumns. 
 
-**Before separation, the s
+**Before separation, you will need to set up the strain files**
+Will need to make lineage folder with your strain_key.txt and lineage_file_setup.class file inside of it
+
+```
+cd /scratch/mandyh/WISER_MC_Kallisto_Paper/lineage_files
+
+java lineage_file_setup strain_key.txt
+```
