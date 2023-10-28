@@ -4,7 +4,7 @@
 
 ## WORKFLOW:
 
-<img width="468" alt="image" src="https://github.com/mandysulli/StrainSort_pipeline/assets/89869003/5e27777f-91fc-4582-ac08-99d0bc05f3a9">
+<img width="500" alt="image" src="https://github.com/mandysulli/StrainSort_pipeline/assets/89869003/5e27777f-91fc-4582-ac08-99d0bc05f3a9">
 
 
 Notes:
@@ -37,3 +37,82 @@ kallisto quant -t 6 -b 100 --pseudobam -i $index/sequences.kallisto_idx -o $outp
 Outputs:
 a tsv file with the estimated counts of reads per reference sequence
 a pseudobam file that indicates which reference sequence each reads pseudoaligned with
+
+**Will need to rename and move outputs**
+rename
+```
+mv ./Sample\/abundance.tsv ./Sample\/Sample\_abundance.tsv
+mv ./Sample\/pseudoalignments.bam ./Sample\/Sample\_pseudoalignments.bam
+```
+move
+```
+#Set directory
+cd /file/path/to/Kallisto_outputs
+
+mkdir Kallisto_tsv_files
+mkdir Kallisto_pseudobam_files
+
+echo "$i"
+mv ./Sample\/Sample_abundance.tsv ./Kallisto_tsv_files
+mv ./Sample\/Sample_pseudoalignments.bam ./Kallisto_pseudobam_files
+```
+
+Vizualization can be made from tsv file using the Rmarkdown file:
+
+## Step 2: Sepparation of reads based on strain mapping:
+
+Inputs needed:
+strain_key.txt - This will need to be a tab delimited text file. This first column will need to have the headers from the reference seqeunces that you used in your reference database and the second colomn will need to have the strain associated with the header. There can be other meta data in the file, however these need to be the first two coloumns. 
+
+**Before separation, you will need to set up the strain files**
+
+Will need to make lineage folder with your strain_key.txt and lineage_file_setup.class file inside of it
+
+```
+cd /scratch/mandyh/WISER_MC_Kallisto_Paper/lineage_files
+
+java lineage_file_setup strain_key.txt
+```
+Run with SAMtools
+
+```
+#Set directory
+cd /file/path/to/Kallisto_outputs
+
+##Create directories
+mkdir /file/path/to/variant_specific_reads_alignments
+mkdir /file/path/to/variant_specific_reads_fastq
+
+#define directory
+input='/file/path/to/Kallisto_outputs/Kallisto_pseudobam_files'
+output='/file/path/to/variant_specific_reads_alignments'
+output2='/file/path/to/variant_specific_reads_fastq'
+lineage='/file/path/to/lineage_files'
+
+##converting to pseudobam to sam to work with
+samtools sort $input/Sample_pseudoalignments.bam > $input/Sample_pseudoalignments_sorted.bam
+samtools index $input/Sample_pseudoalignments_sorted.bam
+samtools view -h $input/Sample_pseudoalignments_sorted.bam > $input/Sample_pseudoalignments.sam
+grep "@" $input/Sample_pseudoalignments.sam > $output/sam_headers_Sample.txt
+
+### only grab mapped reads where both R1 and R2 map - need paired for spades to work
+cat $input/Sample_pseudoalignments.sam | grep -v "^@" | awk 'BEGIN{FS="\t";OFS="\t"}{if($2=='83'||$2=='99'||$2=='147'||$2=='163') print $0}' > $output/incomplete_Sample_mapped_reads.sam
+### grab unmapped reads
+cat $input/Sample_pseudoalignments.sam | grep -v "^@" | awk 'BEGIN{FS="\t";OFS="\t"}{if($2=='77'||$2=='141') print $0}' > $output/incomplete_Sample_unmapped_reads.sam
+cat $output/sam_headers_Sample.txt $output/incomplete_Sample_unmapped_reads.sam > $output/Sample_unmapped_reads.sam
+samtools view -S -b $output/Sample_unmapped_reads.sam > $output/Sample_unmapped_reads.bam
+samtools fastq $output/Sample_unmapped_reads.bam -1 $output2/Sample_unmapped_R1.fastq -2 $output2/Sample_unmapped_R2.fastq
+
+### Pulling out lineage from mapped reads by sample
+### Get the strain used for x from the "All_strain_names.txt" file created in previous set
+for x in {strain1,strain2,strain3}
+do
+grep -f $lineage/$x\.txt $output/incomplete_Sample_mapped_reads.sam > $output/incomplete_Sample_$x\_reads.sam
+cat $output/sam_headers_Sample.txt $output/incomplete_Sample_$x\_reads.sam > $output/Sample_$x\_reads.sam
+samtools view -S -b $output/Sample_$x\_reads.sam > $output/Sample_$x\_reads.bam
+echo "$x"
+samtools fastq $output/Sample_$x\_reads.bam -1 $output2/Sample_$x\_R1.fastq -2 $output2/Sample_$x\_R2.fastq
+done
+```
+
+## Step 3: _de novo_ asseembly of reads by strain
