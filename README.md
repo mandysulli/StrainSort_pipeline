@@ -165,3 +165,27 @@ java scaffold_joining Sample_$x\.sam 21563 25384 29903
 mv ./Extracted_Sample_$x\.fasta $output
 done
 ```
+
+## Perform multiple sequence alignments
+
+**Before performing the sequence alignments,combine regions of interest from each strain by sample name and filter out the seqeunces that have a high proportion of N's.**
+
+Run with Java (If using compiled java program, you will need Java/13.0.2)
+
+```
+cd /file/path/to/mafft_inputs
+inputs='/file/path/to/extracted_spike_fastas'
+
+cat $inputs/Sample_*.fasta > Sample_spike_proteins.fasta 
+java fasta_all_n_filter_v2 Sample_spike_proteins.fasta
+```
+
+Run with MAFFT v7
+```
+cd /file/path/to/mafft_inputs
+output='/file/path/to/mafft_outputs'
+
+mafft --globalpair --maxiterate Sample_final.fasta > $output/Sample.fasta
+```
+
+Note: the way that you combine your samples for multiple sequence alignment can be changed. However, it's recommended that the filtering step takes place
