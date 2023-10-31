@@ -18,7 +18,7 @@ javac program_name.java
 Inputs required:
 1. Paired end FASTQ-Formatted sequencing reads (of any length) obtained from a sample(s) of interest
 2. Compiled reference genomes or sequences (such as scaffolds) to be used as a reference database
-3. A strain key - must have the headers of the reference seuqences in the first column and the strain associated with that sequnce in the second column. Other data can be present.
+3. A strain key - must have the headers of the reference sequences in the first column and the strain associated with that sequence in the second column. Other data can be present.
 4. A single reference genome from the species of interest 
 
 
