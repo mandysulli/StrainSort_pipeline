@@ -9,11 +9,9 @@
 
 Notes:
 
-scripts can be downloaded from "shell_scripts"
-Compiled Java program can be downloaded from "java_programs_compiled" - Programs compled with Java/13.0.2
-Java programs that have not been compiled can be downloaded from "java_programs_not_compiled" - can be compled with any version of java using:
-javac program_name.java
-
+- Scripts can be downloaded from "shell_scripts".
+- Compiled Java program can be downloaded from "java_programs_compiled" - Programs compled with Java/13.0.2.
+- Java programs that have not been compiled can be downloaded from "java_programs_not_compiled" - can be compled with any version of java using: javac program_name.java
 
 Inputs required:
 1. Paired end FASTQ-Formatted sequencing reads (of any length) obtained from a sample(s) of interest
