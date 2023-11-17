@@ -26,7 +26,7 @@ Run with kallisto
 
 Inputs required here:
 1. Paired end reads - they can be any read length
-2. An index reference database - run script 0_kallisto_idx.sh with your reference sequences concatinated into one file
+2. An index reference database - run script 0_kallisto_idx.sh with your reference sequences concatenated into one file
 
 ```
 cd /file/path/to/Kallisto_outputs
@@ -35,7 +35,7 @@ kallisto quant -t 6 -b 100 --pseudobam -i $index/sequences.kallisto_idx -o $outp
 
 Outputs:
 1. A tsv file with the estimated counts of reads per reference sequence
-2. A pseudobam file that indicates which reference sequence each reads pseudoaligned with
+2. A pseudobam file that indicates which reference sequence each read is pseudoaligned with
 
 **Will need to rename and move outputs**
 rename
@@ -55,7 +55,7 @@ mv ./Sample\/Sample_abundance.tsv ./Kallisto_tsv_files
 mv ./Sample\/Sample_pseudoalignments.bam ./Kallisto_pseudobam_files
 ```
 
-Vizualization can be made from tsv file using the Rmarkdown file:
+Visualization can be made from tsv file using the Rmarkdown file:
 
 ## Step 2: Sepparation of reads based on strain mapping:
 
