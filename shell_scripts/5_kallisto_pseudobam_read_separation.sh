@@ -3,7 +3,7 @@
 #SBATCH --partition=partition
 #SBATCH --ntasks=#
 #SBATCH --cpus-per-task=#
-#SBATCH --mem=#
+#SBATCH --mem-per-cpu=#
 #SBATCH --export=
 #SBATCH --time=##:##:##
 #SBATCH --output=%x_%j.out
