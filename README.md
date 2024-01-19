@@ -1,5 +1,5 @@
 # StrainSort_pipeline
- The StrainSort pipeline was created for use with complex multi-strain samples. StrainSort can identify the strains within you sample, estimate the abundance of each strain within the sample and perform phylogenetic analysis of the strains present. 
+ The StrainSort pipeline was created for use with complex multi-strain samples. StrainSort can identify the strains within your sample, estimate the abundance of each strain within the sample, and perform phylogenetic analysis of the strains present. 
 
 
 ## WORKFLOW:
@@ -57,7 +57,7 @@ mv ./Sample\/Sample_pseudoalignments.bam ./Kallisto_pseudobam_files
 
 Visualization can be made from tsv file using the Rmarkdown file:
 
-## Step 2: Sepparation of reads based on strain mapping:
+## Step 2: Separation of reads based on strain mapping:
 
 Inputs required here:
 1. strain_key.txt - This will need to be a tab delimited text file. This first column will need to have the headers from the reference seqeunces that you used in your reference database and the second colomn will need to have the strain associated with the header. There can be other meta data in the file, however these need to be the first two coloumns. 
@@ -115,7 +115,7 @@ samtools fastq $output/Sample_$x\_reads.bam -1 $output2/Sample_$x\_R1.fastq -2 $
 done
 ```
 
-## Step 3: _de novo_ asseembly of reads by strain
+## Step 3: _de novo_ assembly of reads by strain
 
 Run with SPAdes
 
@@ -123,7 +123,7 @@ Things to note at this step:
 1. Get the strains used for x from the "All_strain_names.txt" file created by lineage_file_stepup.class and add unmapped to end
 2. Here the flag meta is being used. You can use corona for SARS-CoV-2 data
 3. Make sure threads and memory match the resources given
-4. Spades will output a folder with assembly files within it
+4. SPAdes will output a folder with assembly files within it
 
 ```
 mkdir /file/path/to/spades_outputs
@@ -136,9 +136,9 @@ python /file/path/to/spades.py --meta --threads 8 --memory 5 --only-assembler -o
 Inputs required here:
 1. A reference genome to be used as an anchor for extracting the region of interest 
 
-**Before extracting the scaffolds from the SPAdes assembly will need to be mapped to a reference genome**
+**Before extracting the scaffolds from the SPAdes assembly, they will need to be mapped to a reference genome**
 
-Run with bbmap
+Run with BBMap
 
 ```
 ref='/file/path/to/ref_genomes'
@@ -150,7 +150,7 @@ bbmap.sh in=./Sample_$x\/scaffolds.fasta out=$output/Sample_$x\.sam ref=$ref/ref
 done
 ```
 
-Run with Java (If using compiled java program, you will need Java/13.0.2)
+Run with Java (if using compiled java program, you will need Java/13.0.2)
 
 ```
 cd /file/path/to/spades_alignment_ref
@@ -166,9 +166,9 @@ done
 
 ## Perform multiple sequence alignments
 
-**Before performing the sequence alignments,combine regions of interest from each strain by sample name and filter out the seqeunces that have a high proportion of N's.**
+**Before performing the sequence alignments, combine regions of interest from each strain by sample name and filter out the sequences that have a high proportion of N's.**
 
-Run with Java (If using compiled java program, you will need Java/13.0.2)
+Run with Java (if using compiled java program, you will need Java/13.0.2)
 
 ```
 cd /file/path/to/mafft_inputs
