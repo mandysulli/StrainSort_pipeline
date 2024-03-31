@@ -13,6 +13,7 @@
 module load Java/13.0.2
 
 ##Will need to make lineage folder with your strain_key.txt and lineage_file_setup.class file inside of it
+##No spaces in the names
 
 #Set directory to execute script
 cd /scratch/mandyh/WISER_MC_Kallisto_Paper/lineage_files
